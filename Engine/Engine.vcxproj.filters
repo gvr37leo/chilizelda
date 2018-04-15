@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="images">
+      <UniqueIdentifier>{7a60e0fb-c288-479b-8415-8e628e870f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mystuff">
+      <UniqueIdentifier>{7756b5dc-0788-4bde-ac92-c6c7d24be0e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mystuff\UI">
+      <UniqueIdentifier>{9944671e-404e-41dc-8f0f-ae89a97f6a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mystuff\gameSpecific">
+      <UniqueIdentifier>{0b36c2c0-41a9-40c9-867f-db9b5eeb9aa6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChiliWin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DXErr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChiliException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="COMInitializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="2Dcamera.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="GridTrigger.h">
+      <Filter>mystuff\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="textInput.h">
+      <Filter>mystuff\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>mystuff\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TwoDarray.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Ability.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Buff.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="LivingThing.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Stat.h">
+      <Filter>mystuff\gameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>mystuff</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DXErr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="COMInitializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>mystuff</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.h">
+      <Filter>mystuff\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.h">
+      <Filter>mystuff\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="FramebufferPS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FramebufferVS.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Chili.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
