@@ -28,6 +28,9 @@
     <Filter Include="mystuff\gameSpecific">
       <UniqueIdentifier>{0b36c2c0-41a9-40c9-867f-db9b5eeb9aa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mystuff\physics">
+      <UniqueIdentifier>{f76726a8-b073-4d49-bf55-dca0f4017fbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -93,9 +96,6 @@
     <ClInclude Include="utils.h">
       <Filter>mystuff</Filter>
     </ClInclude>
-    <ClInclude Include="GridTrigger.h">
-      <Filter>mystuff\UI</Filter>
-    </ClInclude>
     <ClInclude Include="textInput.h">
       <Filter>mystuff\UI</Filter>
     </ClInclude>
@@ -128,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="TileMap.h">
       <Filter>mystuff</Filter>
+    </ClInclude>
+    <ClInclude Include="GridTrigger.h">
+      <Filter>mystuff\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physicsBody.h">
+      <Filter>mystuff\physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
