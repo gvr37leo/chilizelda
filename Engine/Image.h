@@ -11,7 +11,7 @@
 
 struct Image{
 	V2i size;
-	V4f* pixels;
+	V4i* pixels;
 
 	Image() = default;
 
@@ -22,18 +22,22 @@ struct Image{
 	Image(int width, int height){
 		this->size.x = width;
 		this->size.y = height;
-		this->pixels = new V4f[width * height];
+		this->pixels = new V4i[width * height];
+	}
+
+	Box<int> getBox(){
+		return Box<int>(V2i(0,0),size);
 	}
 
 	int index(int x, int y) {
 		return y * size.x + x;
 	}
 
-	void putPixel(int x, int y, V4f color){
+	void putPixel(int x, int y, V4i color){
 		pixels[index(x, y)] = color;
 	}
 
-	V4f& getPixel(int x, int y){
+	V4i& getPixel(int x, int y){
 		return pixels[index(x, y)];
 	}
 
@@ -48,7 +52,7 @@ struct Image{
 		size.x = bmih.biWidth;
 		size.y = bmih.biHeight;
 
-		pixels = new V4f[size.x * size.y];
+		pixels = new V4i[size.x * size.y];
 		file.seekg(bmfh.bfOffBits);
 		int padding = (4 - (size.x * 3) % 4) % 4;
 
@@ -59,7 +63,7 @@ struct Image{
 				int g = file.get();
 				int r = file.get();
 
-				putPixel(x, y, V4f((float)r / 255, (float)g / 255, (float)b / 255));
+				putPixel(x, y, V4i(r,g,b, 255));
 			}
 			file.seekg(padding, std::ios::cur);
 		}
@@ -69,54 +73,58 @@ struct Image{
 	
 	}
 
-	void draw(Graphics& gfx, int x, int y){
-		
-		size.loop([&](V2i& pos) {
-			V4f pixel = getPixel(pos.x, pos.y);
-			V2i drawpos = pos.c().add(V2i(x, y));
-			gfx.PutPixel(drawpos.x,drawpos.y, (int)(pixel.x * 255), (int)(pixel.y * 255), (int)(pixel.z * 255));
-		});
-	}
-
-	void draw(Graphics& gfx, V2i pos, Box<int> mask, std::function<V4f(V2i)> effect) {
+	void draw(Graphics& gfx, V2i pos, Box<int> mask,Box<int> subregion, std::function<V4i(V2i)> effect) {
 		V2i skip = pos.c().to(mask.pos);
 		V2i botrightOfMask = mask.pos.c().add(mask.size);
 		V2i botRightOfImage = pos.c().add(size);
 		V2i stop = botrightOfMask.to(botRightOfImage);
 
-		for(int i = 0; i < 2; i++){//clamp skip and stop vectors to positive range 0 and up
+		for (int i = 0; i < 2; i++) {//clamp skip and stop vectors to positive range 0 and up
 			skip[i] = max(skip[i], 0);
 			stop[i] = max(stop[i], 0);
 		}
 
-		size.c().sub(stop.c().add(skip)).loop([&](V2i& localPosUnskipped) {
+		subregion.size.c().sub(stop.c().add(skip)).loop([&](V2i& localPosUnskipped) {
 			V2i localPos = localPosUnskipped.c().add(skip);
 			V2i absolutePos = localPos.c().add(pos);
-			V4f pixel = effect(localPos);
-			gfx.PutPixel(absolutePos.x, absolutePos.y, (int)(pixel.x * 255), (int)(pixel.y * 255), (int)(pixel.z * 255));
+			V4i pixel = effect(localPos.c().add(subregion.pos));
+			if(pixel.vals[3] > 0.1f){
+				gfx.PutPixel(absolutePos.x, absolutePos.y, pixel.x, pixel.y , pixel.z);
+			}
 		});
 	}
 
-	std::function<V4f(V2i)> defaultEffect(){
+	/*void scale(int amount){
+		V2i newsize = size.c().scale(amount);
+		V4f* newpixels = new V4f[newsize.x * newsize.y];
+		size.loop([&](V2i pos){
+			V2i scaledPos = pos.c().scale(amount);
+			int index = newsize.x * pos.x + pos.y;
+			newpixels[index]
+		});
+
+	}*/
+
+	std::function<V4i(V2i)> defaultEffect(){
 		return [&](V2i pos){
 			return getPixel(pos.x, pos.y);
 		};
 	}
 
-	std::function<V4f(V2i)> inverseEffect(PClock& pclock) {
-		return [&](V2i pos) {
-			V4f pixel = getPixel(pos.x, pos.y);
-			V4f reverse = V4f(1, 1, 1, 1).sub(pixel);
+	//std::function<V4i(V2i)> inverseEffect(PClock& pclock) {
+	//	return [&](V2i pos) {
+	//		V4f pixel = getPixel(pos.x, pos.y);
+	//		V4f reverse = V4f(1, 1, 1, 1).sub(pixel);
 
-			return pixel.lerp(reverse,sinf(pclock.time) * 0.5 + 0.5);
-		};
-	}
+	//		return pixel.lerp(reverse,sinf(pclock.time) * 0.5 + 0.5);
+	//	};
+	//}
 
-	std::function<V4f(V2i)> chromaKeyEffect(V4f chroma) {
+	std::function<V4i(V2i)> chromaKeyEffect(V4i chroma) {
 		return [&](V2i pos) {
-			V4f pixel = getPixel(pos.x, pos.y);
+			V4i pixel = getPixel(pos.x, pos.y);
 			if(chroma == pixel){
-				return V4f(0, 0, 0, 0);
+				return V4i(0, 0, 0, 0);
 			}
 			return pixel;
 		};

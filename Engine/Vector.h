@@ -60,6 +60,13 @@ struct Vector {
 		return *this;
 	}
 
+	Vector& multiply(const Vector& other) {
+		for (int i = 0; i < size; i++) {
+			vals[i] *= other.vals[i];
+		}
+		return *this;
+	}
+
 	T dot(const Vector& other)const {
 		T sum = 0;
 		for (int i = 0; i < size; i++) {
@@ -85,7 +92,7 @@ struct Vector {
 		for (int i = 0; i < size; i++) {
 			sum += vals[i] * vals[i];
 		}
-		return pow(sum, 0.5);
+		return (float)pow(sum, 0.5);
 	}
 
 	Vector lerp(const Vector& other, float weight) {
@@ -139,7 +146,7 @@ struct Vector {
 	Vector<int, size> round() {
 		Vector<int, size> v;
 		for (int i = 0; i < size; i++) {
-			v[i] = std::round(vals[i]);
+			v[i] = (int)std::round(vals[i]);
 		}
 		return v;
 	}
@@ -220,4 +227,5 @@ typedef Vector<int, 2> V2i;
 typedef Vector<float, 2> V2f;
 typedef Vector<int, 3> V3i;
 typedef Vector<float, 3> V3f;
+typedef Vector<int, 4> V4i;
 typedef Vector<float, 4> V4f;

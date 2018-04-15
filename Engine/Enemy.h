@@ -16,10 +16,8 @@ struct Enemy : LivingThing{
 	}
 
 	void update(float delta){
-
 		if(pos != target->pos){
 			pos.add(pos.to(target->pos).normalise().scale(speed).scale(delta));
 		}
-		
 	}
 };

@@ -30,6 +30,6 @@ struct Bullet{
 	}
 
 	void draw(Graphics& gfx){
-		image.draw(gfx, pos.round(), gfx.getScreenBox(), image.defaultEffect());
+		image.draw(gfx, pos.round(), gfx.getScreenBox(), image.getBox(), image.chromaKeyEffect(V4i(255, 0, 220, 255)));
 	}
 };

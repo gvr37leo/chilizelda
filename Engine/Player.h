@@ -19,11 +19,12 @@ struct Player : LivingThing{
 		this->image = image_;
 		speed = 200.0f;
 		this->inputListener = inputListener;
+		Image bulletImage = Image("sprites/bullet.bmp");
 		
 
 		inputListener->leftmouse.onChange.listen([=](bool val){
 			if(val){
-				bullets.emplace_back(pos.c(), V2f(100, 0), 5, image, Box<int>(V2i(0, 0), V2i(0, 0)), 3);
+				bullets.emplace_back(pos.c(), V2f(100, 0), 5, bulletImage, Box<int>(V2i(0, 0), V2i(0, 0)), 3);
 			}
 		});
 	}
@@ -42,7 +43,7 @@ struct Player : LivingThing{
 
 	void draw(Graphics& gfx, PClock& pclock){
 		float anim = sinf(pclock.time) * 0.5 + 0.5;
-		image.draw(gfx, pos.round(), gfx.getScreenBox(), image.defaultEffect());
+		image.draw(gfx, pos.round(), gfx.getScreenBox(), image.getBox(), image.chromaKeyEffect(V4i(255,0,220,255)));
 		for (auto bullet : bullets)
 		{
 			bullet.draw(gfx);
